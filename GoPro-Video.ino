@@ -65,8 +65,11 @@ void loop()
   // Connect
   case 'b':
     iRet = gp.begin();
-    Serial.print("gp.begin() = ");
-    Serial.println(iRet);
+//    while ((iRet = gp.begin()) != 1)
+    {
+      Serial.print("gp.begin() = ");
+      Serial.println(iRet);
+    }
     break;
 
   case 'c':
