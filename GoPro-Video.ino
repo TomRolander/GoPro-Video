@@ -55,6 +55,11 @@ void loop()
   if (espSerial.available() > 0)
   {
     in = espSerial.read();    
+{
+Serial.println("**********");
+Serial.println(in);
+Serial.println("**********");
+}
   }
 
   switch (in)
@@ -189,6 +194,8 @@ void loop()
 
   // Open the connection
   case '1':
+    Serial.print("iRemoteRecording=");
+    Serial.println(iRemoteRecording);
     if (iRemoteRecording == 0)
     {
       iRet = gp.begin();
@@ -196,10 +203,11 @@ void loop()
       Serial.println(iRet);
       if (gp.isConnected())
       {
-        espSerial.print('1');
+        Serial.println("CONNECTED");
         gp.setMode(VIDEO_MODE);
         gp.shoot();
         iRemoteRecording = 1;
+        espSerial.print('1');
       }
       else
       {
