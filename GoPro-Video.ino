@@ -6,6 +6,8 @@ SoftwareSerial espSerial(12,14);
 #include <GoProControl.h>
 #include "Secrets.h"
 
+#define VERSION "0.3 2021-07-02"
+
 #define ESP8266_BUTTON 4
 
 /*
@@ -24,7 +26,8 @@ void setup()
 {
   int iRet;
 
-  espSerial.begin(115200);
+//  espSerial.begin(115200);
+  espSerial.begin(9600);
 
   //Initialize serial and wait for port to open:
   Serial.begin(115200);
@@ -37,6 +40,8 @@ void setup()
   pinMode(ESP8266_BUTTON, INPUT_PULLUP);
   
   Serial.println("GoProVideoControl");
+  Serial.print("Ver ");
+  Serial.println(VERSION);
   Serial.println("=================");
 
   gp.enableDebug(&Serial, 115200);
@@ -55,11 +60,13 @@ void loop()
   if (espSerial.available() > 0)
   {
     in = espSerial.read();    
+#if 0    
 {
 Serial.println("**********");
 Serial.println(in);
 Serial.println("**********");
 }
+#endif
   }
 
   switch (in)
@@ -69,11 +76,13 @@ Serial.println("**********");
 
   // Connect
   case 'b':
-    iRet = gp.begin();
-//    while ((iRet = gp.begin()) != 1)
+    iRemoteRecording = 0;
+//    iRet = gp.begin();
+    while ((iRet = gp.begin()) != 1)
     {
       Serial.print("gp.begin() = ");
       Serial.println(iRet);
+      delay(2500);
     }
     break;
 
@@ -198,9 +207,17 @@ Serial.println("**********");
     Serial.println(iRemoteRecording);
     if (iRemoteRecording == 0)
     {
-      iRet = gp.begin();
-      Serial.print("gp.begin() = ");
-      Serial.println(iRet);
+      while ((iRet = gp.begin()) != 1)
+      {
+        Serial.print("gp.begin() = ");
+        Serial.println(iRet);
+        delay(2500);
+      }
+   
+//      iRet = gp.begin();
+//      Serial.print("gp.begin() = ");
+//      Serial.println(iRet);
+      
       if (gp.isConnected())
       {
         Serial.println("CONNECTED");
