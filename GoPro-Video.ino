@@ -211,7 +211,7 @@ Serial.println("**********");
       {
         Serial.print("gp.begin() = ");
         Serial.println(iRet);
-        delay(2500);
+        delay(1000);
       }
    
 //      iRet = gp.begin();
