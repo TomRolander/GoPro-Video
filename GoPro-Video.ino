@@ -60,7 +60,7 @@ void loop()
   if (espSerial.available() > 0)
   {
     in = espSerial.read();    
-#if 0    
+#if 1    
 {
 Serial.println("**********");
 Serial.println(in);
