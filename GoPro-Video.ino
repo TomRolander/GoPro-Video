@@ -27,10 +27,10 @@ void setup()
   int iRet;
 
 //  espSerial.begin(115200);
-  espSerial.begin(9600);
+  espSerial.begin(1200);
 
   //Initialize serial and wait for port to open:
-  Serial.begin(115200);
+  Serial.begin(9600);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -44,7 +44,7 @@ void setup()
   Serial.println(VERSION);
   Serial.println("=================");
 
-  gp.enableDebug(&Serial, 115200);
+  gp.enableDebug(&Serial, 9600);
 }
 
 void loop()
