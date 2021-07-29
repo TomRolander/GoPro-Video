@@ -222,7 +222,7 @@ Serial.println("**********");
       {
         Serial.println("CONNECTED");
         gp.setMode(VIDEO_MODE);
-        gp.shoot();
+//        gp.shoot();
         iRemoteRecording = 1;
         espSerial.print('1');
       }
@@ -238,7 +238,7 @@ Serial.println("**********");
     if (iRemoteRecording == 1 && gp.isConnected())
     {
       iRemoteRecording = 0;
-      gp.stopShoot();
+//      gp.stopShoot();
       gp.end();
       Serial.println("gp.end()");
     }
