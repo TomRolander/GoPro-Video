@@ -297,6 +297,12 @@ Serial.println("**********");
     gp.end();
     break;
 
+  // Get current time
+  case '2':
+    printLocalTime();
+     espSerial.print(buffer);
+    break;
+    
   // Open the connection
   case '1':
     Serial.print("iRemoteRecording=");
