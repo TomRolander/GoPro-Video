@@ -4,7 +4,7 @@
 // Replace the following:
 #if 1
 #define GOPRO_SSID "GP28073633"
-#define GOPRO_PASS "B3W-dGc-5N7"
+#define GOPRO_PASS "b9z-w?S-Rh6"
 #define CAMERA 7
 #endif
 
