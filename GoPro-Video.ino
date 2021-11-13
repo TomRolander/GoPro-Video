@@ -8,7 +8,7 @@ SoftwareSerial espSerial(12,14);
 #include <GoProControl.h>
 #include "Secrets.h"
 
-#define VERSION "0.3 2021-07-02"
+#define VERSION "0.4 2021-11-13"
 
 #define ESP8266_BUTTON 4
 
@@ -31,7 +31,7 @@ const char* password = "";                    // your network password
 
 const char* ntpServer = "pool.ntp.org";
 const long  gmtOffset_sec = -(8*3600);
-const int   daylightOffset_sec = 3600; //0; //
+int   daylightOffset_sec = 0;  // 3600;
 
 /*
   %a Abbreviated weekday name 
@@ -359,6 +359,18 @@ Serial.println("**********");
     gp.end();
     break;
 
+  // Turn OFF daylight savings
+  case '4':
+    daylightOffset_sec = 0;
+    Serial.println("Turn OFF daylight savings");
+    break;
+    
+  // Turn ON daylight savings
+  case '3':
+    daylightOffset_sec = 3600;
+    Serial.println("Turn ON daylight savings");
+    break;
+    
   // Get current time
   case '2':
     GetLocalTime();
